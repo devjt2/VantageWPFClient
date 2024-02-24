@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VantageWPFClient")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e132bc86d5ac6c2f186ecc6c2662b4ebb8ff2fbf")]
 [assembly: System.Reflection.AssemblyProductAttribute("VantageWPFClient")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VantageWPFClient")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
