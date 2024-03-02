@@ -5,8 +5,75 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VantageWPFClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Vantage API Tester" Height="600" Width="1000">
     <Grid>
+        <!-- This is the grid that is the whole window. -->
+        <Grid>
+            <!-- Let's add a grid to handle the menu bar and status bar.-->
+            <!-- Simple grid to put in status bars.-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Name="MainMenuRow" Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
+            <Menu IsMainMenu="True" Grid.Row="0" Grid.Column="1" Width="Auto" Height="22" FontSize="16" Background="LightCyan" >
+                <MenuItem Name="ActionsMenu" Header="Actions">
+                    <MenuItem Name="ExitButton" Header="Exit" AutomationProperties.HelpText="Click here to exit application"/>
+                </MenuItem>
+                <Separator />
+                <MenuItem Name="SettingsMenuButton"  Header="Settings">
+                    <MenuItem Name="SettingsButton" Header="Edit Settings" Click="SettingsButton_Click"/>
+                </MenuItem>
+                <Separator />
+                <MenuItem Name="HelpMenuItem"  Header="Help">
+                    <MenuItem Name="HelpButton" Header="About"/>
+                    <MenuItem Name="SupportButton" Header="Support"/>
+                </MenuItem>
+
+                <!--<MenuItem Click="MenuItem_Click">
+                <MenuItem.Header>
+                    <DockPanel>
+                        <TextBlock>Step</TextBlock>
+                        <TextBlock Width="10"></TextBlock>
+                        <TextBlock HorizontalAlignment="Right">F2</TextBlock>
+                    </DockPanel>
+                </MenuItem.Header>
+            </MenuItem>-->
+            </Menu>
+
+            <StatusBar Grid.Row="2" Grid.Column="1" Height="25" Width="Auto" FontSize="14">
+                <StatusBarItem Name="ConnectedStatusLabel" Content="Server Status:"/>
+                <StatusBarItem Name="ConnectedStatusValue" Content="Ready to connect..."/>
+            </StatusBar>
+
+        </Grid>
+        
+
+
+        <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible">
+
+
+        <Grid Grid.Row="1" Grid.Column="1" Width="Auto">
+            --><!-- This is a grid within a grid, and will have the main content.--><!--
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <TextBlock>Resize window to auto enable or disable scrolling.</TextBlock>
+                <Separator />
+                <Rectangle Fill="DodgerBlue" Width="1500" Height="1000"></Rectangle>
+            </StackPanel>
+
+        </Grid>
+        </ScrollViewer>-->
     </Grid>
 </Window>

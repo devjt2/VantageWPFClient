@@ -20,5 +20,10 @@ namespace VantageWPFClient
         {
             InitializeComponent();
         }
+
+        public void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("You clicked the settings button");
+        }
     }
 }
