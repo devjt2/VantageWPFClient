@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VantageWPFClient"
         mc:Ignorable="d"
-        Title="Vantage API Tester" Height="600" Width="1000">
+        Title="Vantage API Tester" Height="800" Width="1200"
+        Closing="Window_Closing">
     <Grid>
         <!-- This is the grid that is the whole window. -->
         <Grid>
@@ -24,7 +25,7 @@
 
             <Menu IsMainMenu="True" Grid.Row="0" Grid.Column="1" Width="Auto" Height="22" FontSize="16" Background="LightCyan" >
                 <MenuItem Name="ActionsMenu" Header="Actions">
-                    <MenuItem Name="ExitButton" Header="Exit" AutomationProperties.HelpText="Click here to exit application"/>
+                    <MenuItem Name="ExitButton" Header="Exit" AutomationProperties.HelpText="Click here to exit application" Click="ExitButton_Click"/>
                 </MenuItem>
                 <Separator />
                 <MenuItem Name="SettingsMenuButton"  Header="Settings">
@@ -35,45 +36,99 @@
                     <MenuItem Name="HelpButton" Header="About"/>
                     <MenuItem Name="SupportButton" Header="Support"/>
                 </MenuItem>
-
-                <!--<MenuItem Click="MenuItem_Click">
-                <MenuItem.Header>
-                    <DockPanel>
-                        <TextBlock>Step</TextBlock>
-                        <TextBlock Width="10"></TextBlock>
-                        <TextBlock HorizontalAlignment="Right">F2</TextBlock>
-                    </DockPanel>
-                </MenuItem.Header>
-            </MenuItem>-->
             </Menu>
 
-            <StatusBar Grid.Row="2" Grid.Column="1" Height="25" Width="Auto" FontSize="14">
-                <StatusBarItem Name="ConnectedStatusLabel" Content="Server Status:"/>
-                <StatusBarItem Name="ConnectedStatusValue" Content="Ready to connect..."/>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="250"/>
+                </Grid.ColumnDefinitions>
+                <!-- Put our main content here.-->
+                <ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible">
+                    <!--<Rectangle Fill="DodgerBlue" Width="1500" Height="1000"></Rectangle>-->
+                    <!-- Here we put our 'slots' for each function-->
+                    <StackPanel Orientation="Vertical">
+                        <Separator/>
+                        <Grid Name="FunctionSlot1" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10"/>
+                                <!-- Little margin on left of labels-->
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="70"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Content="Get Workflows From Vantage"/>
+                            <Label Grid.Row="1" Grid.Column="1" Content="User Input 1"/>
+
+                            <Label Grid.Row="2" Grid.Column="1" Content="User Input 2"/>
+                            <Button Name="GetWorkflowsButton" Grid.Row="0" Grid.RowSpan="3" Grid.Column="5" Content="Go!" Click="GetWorkflowsButton_Click"/>
+                        </Grid>
+                        <Separator/>
+                        <Grid Name="FunctionSlot2" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10"/>
+                                <!-- Little margin on left of labels-->
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="70"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Content="Submit Job to Vantage Workflow"/>
+                            <Label Grid.Row="1" Grid.Column="1" Content="Category: "/>
+                            <ComboBox Grid.Row="1" Grid.Column="2" Name="CategorySelectionBox" SelectionChanged="CategorySelectionBox_SelectionChanged"/>
+                            <Label Grid.Row="2" Grid.Column="1" Content="Workflow: "/>
+                            <ComboBox Grid.Row="2" Grid.Column="2" Name="WorkflowSelectionBox"/>
+                            <Button Name="SubmitJobButton" Grid.Row="0" Grid.RowSpan="3" Grid.Column="5" Content="Go!"/>
+                        </Grid>
+                        <Separator/>
+                        <Button Content="Button 1"/>
+                        <Button Content="Button 2"/>
+                        <Button Content="Button 3"/>
+                    </StackPanel>
+                </ScrollViewer>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Server Response" FontSize="18" Background="Chartreuse"/>
+                    <Button Name="ClearButton" Grid.Row="0" Grid.Column="1" Content="Clear" Click="ClearButton_Click"/>
+                    <!-- This is where the JSON Response Goes-->
+                    <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <TextBlock Name ="ServerResponseTextBlock"  Text="...Server Response"/>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+
+            
+            <!-- Status bar at bottom -->
+            <StatusBar Grid.Row="2" Grid.Column="1" Height="Auto
+                       " Width="Auto" FontSize="14">
+                <StatusBarItem  Name="ConnectedStatusLabel" Content="Server Status:"/>
+                <Separator/>
+                <StatusBarItem  Name="ConnectedStatusValue" Content="Ready to connect..." />
+                <Separator/>
+                <Label          Name="ServerAddressInputLabel" Content="Server Address:"/>
+                <TextBox        Name="ServerAddressInputTextBox" Width="250" Height="28" Text="http://10.3.3.238:8676" VerticalContentAlignment="Center"/>
+                <Button         Name="ConnectServerButton" Content="Connect!" Click="ConnectServerButton_Click"/>
             </StatusBar>
-
         </Grid>
-        
-
-
-        <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible">
-
-
-        <Grid Grid.Row="1" Grid.Column="1" Width="Auto">
-            --><!-- This is a grid within a grid, and will have the main content.--><!--
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                <TextBlock>Resize window to auto enable or disable scrolling.</TextBlock>
-                <Separator />
-                <Rectangle Fill="DodgerBlue" Width="1500" Height="1000"></Rectangle>
-            </StackPanel>
-
-        </Grid>
-        </ScrollViewer>-->
     </Grid>
 </Window>
